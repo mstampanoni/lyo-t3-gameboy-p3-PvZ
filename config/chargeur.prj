@@ -6,9 +6,9 @@
     "windows_target_platform_version": "10.0",
     "configuration": [
         {
-            "additional_dependencies": "sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib%(AdditionalDependencies)",
-            "additional_include_directories": "..\\..\\..\\sfml\\include;%(AdditionalIncludeDirectories)",
-            "additional_library_directories": "..\\..\\..\\sfml\\lib;%(AdditionalLibraryDirectories)",
+	    "additional_dependencies": "sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)",
+            "additional_include_directories": "$(ProjectDir)..\\..\\..\\sfml\\include",
+            "additional_library_directories": "$(ProjectDir)..\\..\\..\\sfml\\lib",
             "character_set": "Unicode",
             "conformance_mode": "true",
             "generate_debug_information": "true",
