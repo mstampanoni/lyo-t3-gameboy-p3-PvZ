@@ -36,7 +36,8 @@ public:
 
         auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
 
-        if (elapsed >= 2) {
+        if (elapsed >= 2) 
+        {
             Plant->shoot();
             startTime = std::chrono::high_resolution_clock::now();
         }

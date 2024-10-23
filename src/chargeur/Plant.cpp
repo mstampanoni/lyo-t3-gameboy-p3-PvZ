@@ -21,6 +21,13 @@ Plant::Plant(sf::Vector2f pos, int radius) : Entity(pos, radius), mState(Context
     mBehaviour->AddTransition(Context::State::Idle, idle_to_shooting);
 
     mBehaviour->AddAction(Context::State::Shooting, shooting_action);
+
+    Transition* shooting_to_idle = new Transition();
+    shooting_to_idle->addCondition(new NoZombieInRangeCondition());
+    shooting_to_idle->setTargetState(Context::State::Idle);
+
+    mBehaviour->AddTransition(Context::State::Shooting, shooting_to_idle);
+
 }
 
 Plant::~Plant() {}

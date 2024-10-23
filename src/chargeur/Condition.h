@@ -31,18 +31,15 @@ private:
     float mRange;
 
 public:
-    NoZombieInRangeCondition(float range) : mRange(range) {}
-
     bool Test(Plant* plant) override
     {
-        auto zombies = Playground::getInstance()->getZombies();
-        for (const auto& zombie : zombies)
+        for (auto zombie : Playground::getInstance()->getZombies())
         {
-            if (Playground::getInstance()->isZombieInRange(plant, zombie, mRange))
+            if (zombie->getPosition().y == plant->getPosition().y)
             {
-                return false; 
+                return false;
             }
         }
-        return true; 
+        return true;
     }
 };
