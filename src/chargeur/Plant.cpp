@@ -1,21 +1,13 @@
 #include "pch.h"
 #include "Plant.h"
 
-Plant::Plant()
-{
-}
+Plant::Plant() {}
 
-Plant::Plant(sf::Vector2f position, Behaviour* plant_behaviour, int ammo_count)
-{
-}
+Plant::Plant(sf::Vector2f position, Behaviour* plant_behaviour, int ammo_count) {}
 
-Plant::~Plant()
-{
-}
+Plant::~Plant() {}
 
-void Plant::setState(Context::State)
-{
-}
+void Plant::setState(Context::State) {}
 
 Context::State Plant::getState() const
 {

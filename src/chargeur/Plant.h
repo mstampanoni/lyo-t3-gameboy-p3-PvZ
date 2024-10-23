@@ -14,6 +14,7 @@ class Plant
     Context::State mState;
     Behaviour* mBehaviour;
 public:
+
     Plant();
     Plant(
         sf::Vector2f position,
