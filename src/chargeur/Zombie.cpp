@@ -10,7 +10,3 @@ void Zombie::Update()
 {
 	this->pos.x -= mSpeed;
 }
-
-void Zombie::Update()
-{
-}

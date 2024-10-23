@@ -14,6 +14,7 @@ Playground::Playground () { addPlant(); }
 
 void Playground::addZombie(sf::Vector2f pos)
 {
+
     mZombies.push_back(new Zombie(pos, 10));
 }
 
@@ -103,14 +104,6 @@ void Playground::draw(sf::RenderWindow& window)
     {
         plant->draw(window);
     }
-		//shape.setPosition(mZombies[i]->pos.x, mZombies[i]->pos.y);
-		//shape.setOrigin(radius, radius);
-		//shape.setFillColor(sf::Color(255, 0, 0));
-		//shape.setOutlineThickness(5);
-		//shape.setOutlineColor(sf::Color(134, 1, 17));
-
-		//window.draw(shape);
-	}
 }
 
 void Playground::update()
@@ -131,6 +124,7 @@ void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
     if (event.type == sf::Event::MouseButtonPressed)
     {
         sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-        addZombie(sf::Vector2f(mouse_pos.x, mouse_pos.y));
+        sf::Vector2f spawn_pos(650, getNearestRow(mouse_pos));
+        addZombie(spawn_pos);
     }
 }
