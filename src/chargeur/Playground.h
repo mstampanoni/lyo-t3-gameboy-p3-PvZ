@@ -4,14 +4,15 @@
 
 class Plant;
 class Projectile;
-class Enemy;
+class Zombie;
 
 class Playground
 {
 private:
 	std::vector<Plant*> mPlants;
+	std::vector<Zombie*> mZombies;
 	Playground();
-	void checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Enemy*>& mEnemies);
+	void checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies);
 public:
 	static Playground* instantiate();
 	static Playground* getInstance();
