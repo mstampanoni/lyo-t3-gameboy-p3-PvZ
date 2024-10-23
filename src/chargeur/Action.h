@@ -44,3 +44,29 @@ public:
 
     void End(Plant* Plant)  override {};
 };
+
+
+class ReloadingAction : public Action
+{
+public:
+    std::chrono::high_resolution_clock::time_point startTime;
+
+    void Start(Plant* Plant) override
+    {
+        startTime = std::chrono::high_resolution_clock::now();
+    }
+
+    void Update(Plant* Plant) override
+    {
+        auto currentTime = std::chrono::high_resolution_clock::now();
+
+        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
+
+        if (elapsed >= 4) {
+            Plant->reload();
+            startTime = std::chrono::high_resolution_clock::now();
+        }
+    }
+
+    void End(Plant* Plant)  override {};
+};

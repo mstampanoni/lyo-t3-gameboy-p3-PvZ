@@ -52,7 +52,15 @@ void Plant::refillMagazine()
 
 void Plant::shoot()
 {
-    Playground::getInstance()->addProjectile(sf::Vector2f(pos.x, pos.y + radius/2));
+    if (mAmmoCount > 0) {
+        Playground::getInstance()->addProjectile(sf::Vector2f(pos.x, pos.y + radius / 2));
+        mAmmoCount--;
+    }
+}
+
+void Plant::reload()
+{
+    mAmmoCount = mMaxAmmo;
 }
 
 void Plant::Update()
