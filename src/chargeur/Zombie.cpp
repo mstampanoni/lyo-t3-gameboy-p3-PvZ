@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "Zombie.h"
 
-Zombie::Zombie(int x, int y) : Entity(x,y)
+Zombie::Zombie(sf::Vector2f pos, int radius) : Entity(pos, radius)
 {
-
+    shape.setFillColor(sf::Color::Red);  
 }
 
 void Zombie::move()
 {
+}
 
+void Zombie::Update()
+{
 }

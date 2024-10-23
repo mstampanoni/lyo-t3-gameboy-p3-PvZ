@@ -16,7 +16,13 @@ private:
 
 	Playground();
 	void checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies);
+
+	void addZombie(sf::Vector2f pos);
+	void addProjectile(sf::Vector2f pos);
+	void addPlant();
+
 public:
+
 	static Playground* instantiate();
 	static Playground* getInstance();
 	~Playground();

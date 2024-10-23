@@ -2,25 +2,44 @@
 #include "Playground.h"
 #include "Zombie.h"
 #include "Projectile.h"
+#include "Plant.h"
+#include "Entity.h"
+#include <algorithm>
 
 namespace {
-	static Playground* instance = nullptr;
+    static Playground* instance = nullptr;
 }
 
-Playground::Playground() {
+Playground::Playground () { addPlant(); }
 
+void Playground::addZombie(sf::Vector2f pos)
+{
+    mZombies.push_back(new Zombie(pos, 10));
 }
 
-void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombie)
+void Playground::addProjectile(sf::Vector2f pos)
+{
+    mProjectiles.push_back(new Projectile(pos, 5));
+}
+
+void Playground::addPlant()
+{
+    mPlants.push_back(new Plant(sf::Vector2f(10, 50), 10));
+    mPlants.push_back(new Plant(sf::Vector2f(10, 150), 10));
+    mPlants.push_back(new Plant(sf::Vector2f(10, 250), 10));
+    mPlants.push_back(new Plant(sf::Vector2f(10, 350), 10));
+}
+
+void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies)
 {
     for (auto& projectile : mProjectiles)
     {
         for (auto& zombie : mZombies)
         {
-            if (projectile->pos.x < zombie->pos.x + zombie->dim.x &&
-                projectile->pos.x + projectile->dim.x > zombie->pos.x &&
-                projectile->pos.y < zombie->pos.y + zombie->dim.y &&
-                projectile->pos.y + projectile->dim.y > zombie->pos.y)
+            if (projectile->getPosition().x < zombie->getPosition().x + zombie->getRadius() * 2 &&
+                projectile->getPosition().x + projectile->getRadius() * 2 > zombie->getPosition().x &&
+                projectile->getPosition().y < zombie->getPosition().y + zombie->getRadius() * 2 &&
+                projectile->getPosition().y + projectile->getRadius() * 2 > zombie->getPosition().y)
             {
                 delete projectile;
                 delete zombie;
@@ -36,47 +55,60 @@ void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vec
 
 Playground* Playground::instantiate()
 {
-	if (!instance)
-	{
-		instance = new Playground();
-		return instance;
-	}
-	return nullptr;
+    if (!instance)
+    {
+        instance = new Playground();
+        return instance;
+    }
+    return nullptr;
 }
 
 Playground* Playground::getInstance()
 {
-	return instance;
+    return instance;
 }
 
 Playground::~Playground()
 {
 }
 
+
 void Playground::draw(sf::RenderWindow& window)
 {
-	for (int i = 0; i < mZombies.size(); i++) {
+    for (auto& zombie : mZombies)
+    {
+        zombie->draw(window);
+    }
 
-		int radius = 20;
-		sf::CircleShape shape(radius);
+    for (auto& projectile : mProjectiles)
+    {
+        projectile->draw(window);
+    }
 
-		shape.setPosition(mZombies[i]->x, mZombies[i]->y);
-		shape.setOrigin(radius, radius);
-		shape.setFillColor(sf::Color(255, 0, 0));
-
-		window.draw(shape);
-	}
+    for (auto& plant : mPlants)
+    {
+        plant->draw(window);
+    }
 }
 
 void Playground::update()
 {
+    for (auto& zombie : mZombies)
+    {
+        zombie->Update();
+    }
+
+    for (auto& projectile : mProjectiles)
+    {
+        projectile->Update();
+    }
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 {
-	if (event.type == sf::Event::MouseButtonPressed) {
-		sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-
-		mZombies.push_back(new Zombie(mouse_pos.x, mouse_pos.y));
-	}
+    if (event.type == sf::Event::MouseButtonPressed)
+    {
+        sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
+        addZombie(sf::Vector2f(mouse_pos.x, mouse_pos.y));
+    }
 }

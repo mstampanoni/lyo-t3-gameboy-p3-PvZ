@@ -17,9 +17,7 @@ class Projectile : public Entity
 public:
 
     Projectile();
-    Projectile(
-        Behaviour* plant_behaviour,
-        int ammo_count);
+    Projectile(sf::Vector2f pos, int radius);
     ~Projectile();
 
     void setState(Context::State);

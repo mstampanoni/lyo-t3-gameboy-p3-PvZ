@@ -6,8 +6,9 @@ Projectile::Projectile()
 {
 }
 
-Projectile::Projectile(Behaviour* plant_behaviour, int ammo_count)
+Projectile::Projectile(sf::Vector2f pos, int radius) : Entity(pos, radius)
 {
+	shape.setFillColor(sf::Color::White);
 }
 
 Projectile::~Projectile()

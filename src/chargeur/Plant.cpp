@@ -3,7 +3,10 @@
 
 Plant::Plant() {}
 
-Plant::Plant(Behaviour* plant_behaviour, int ammo_count) {}
+Plant::Plant(sf::Vector2f pos, int radius) : Entity(pos, radius)
+{
+	shape.setFillColor(sf::Color::Blue);
+}
 
 Plant::~Plant() {}
 

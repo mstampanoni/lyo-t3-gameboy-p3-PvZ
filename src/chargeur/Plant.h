@@ -17,9 +17,7 @@ class Plant : public Entity
 public:
 
     Plant();
-    Plant(
-        Behaviour* plant_behaviour,
-        int ammo_count);
+    Plant(sf::Vector2f pos, int radius);
     ~Plant();
 
     void setState(Context::State);

@@ -1,12 +1,12 @@
 #pragma once
 #include "Entity.h"
 
-class Zombie : public Entity{
+class Zombie : public Entity
+{
 public:
+    Zombie(sf::Vector2f pos, int radius);
 
-	Zombie(int x, int y);
-
-	void move();
-	
-	//float mSpeed;
+    void move();  
+    void Update() override;  // Surcharger Update
 };
+
