@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "Entity.h"
 
-Entity::Entity(int x, int y)
-{
-	this->x = x;
-	this->y = y;
+Entity::Entity() {}
 
+Entity::Entity(sf::Vector2f pos, sf::Vector2f dim)
+{
+	this->pos = pos;
+	this->dim = dim;
 }
