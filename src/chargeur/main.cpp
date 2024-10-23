@@ -2,12 +2,17 @@
 #include <SFML/Graphics.hpp>
 
 #include "Playground.h"
+#include "TextManager.h"
 
 int main(void)
 {
     sf::RenderWindow window(sf::VideoMode(650, 400), "PvZ Game");
 
     Playground* playground = Playground::instantiate();
+
+    TextManager* text_manager = TextManager::instantiate();
+
+    text_manager->initText();
 
     if (!playground)
     {

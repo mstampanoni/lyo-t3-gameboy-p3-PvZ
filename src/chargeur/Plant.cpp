@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Plant.h"
+#include "TextManager.h"
 
 Plant::Plant() {}
 
@@ -24,7 +25,7 @@ sf::Color Plant::getColor() const
 
 int Plant::getAmmoCount() const
 {
-	return 0;
+	return mAmmoCount;
 }
 
 void Plant::refillMagazine()
@@ -38,4 +39,16 @@ bool Plant::shoot()
 
 void Plant::Update()
 {
+}
+
+void Plant::drawAmmoCount(sf::RenderWindow& window)
+{
+
+    TextManager* text_manager = TextManager::getInstance();
+
+	text_manager->text.setString(std::to_string(mAmmoCount));
+
+	text_manager->text.setPosition(pos.x, pos.y + radius);
+
+    window.draw(text_manager->text);
 }

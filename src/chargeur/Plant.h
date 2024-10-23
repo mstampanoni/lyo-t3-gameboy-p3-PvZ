@@ -10,9 +10,13 @@
 class Plant : public Entity
 {
     std::string mName;
-    int mAmmoCount, mMaxAmmo;
+    int mAmmoCount = 5;
+    int mMaxAmmo;
     Context::State mState;
     Behaviour* mBehaviour;
+
+    sf::Text ammo_text;
+    sf::Font text_font;
 
 public:
 
@@ -30,4 +34,7 @@ public:
     bool shoot();
 
     void Update();
+
+    void initText();
+    void drawAmmoCount(sf::RenderWindow& window);
 };
