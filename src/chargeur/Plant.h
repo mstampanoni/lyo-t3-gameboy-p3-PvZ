@@ -31,7 +31,7 @@ public:
     int getAmmoCount() const;
     void refillMagazine();
 
-    bool shoot();
+    void shoot();
 
     void Update();
 

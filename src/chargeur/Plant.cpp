@@ -50,9 +50,9 @@ void Plant::refillMagazine()
 {
 }
 
-bool Plant::shoot()
+void Plant::shoot()
 {
-	return false;
+    Playground::getInstance()->addProjectile(sf::Vector2f(pos.x, pos.y + radius/2));
 }
 
 void Plant::Update()

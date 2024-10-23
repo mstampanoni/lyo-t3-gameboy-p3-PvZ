@@ -2,6 +2,7 @@
 
 #include "Plant.h"
 #include "Playground.h"
+#include <chrono>
 
 class Action
 {
@@ -22,14 +23,23 @@ public:
 class ShootingAction : public Action
 {
 public:
+    std::chrono::high_resolution_clock::time_point startTime;
+
     void Start(Plant* Plant) override 
     {
-        Playground::getInstance()->addProjectile(Plant->getPosition());
+        startTime = std::chrono::high_resolution_clock::now();
     }
 
-    void Update(Plant* plant) override
+    void Update(Plant* Plant) override
     {
-        plant->shoot();
+        auto currentTime = std::chrono::high_resolution_clock::now();
+
+        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
+
+        if (elapsed >= 2) {
+            Plant->shoot();
+            startTime = std::chrono::high_resolution_clock::now();
+        }
     }
 
     void End(Plant* Plant)  override {};
