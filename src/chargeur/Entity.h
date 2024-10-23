@@ -10,6 +10,5 @@ public:
     sf::Vector2f pos;
     sf::Vector2f dim;
 
-    /*sf::Vector2f getPosition();
-    void setPosition(sf::Vector2f new_Position);*/
+    virtual void Update() = 0;
 };

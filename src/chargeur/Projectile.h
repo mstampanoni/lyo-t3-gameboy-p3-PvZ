@@ -27,5 +27,5 @@ public:
 
     sf::Color getColor() const;
 
-    void Update();
+    void Update() override;
 };
