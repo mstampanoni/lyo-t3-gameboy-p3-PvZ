@@ -18,10 +18,10 @@ void Entity::draw(sf::RenderWindow& window)
 
 sf::Vector2f Entity::getPosition()
 {
-    return sf::Vector2f();
+    return pos;
 }
 
 int Entity::getRadius()
 {
-    return 0;
+    return radius;
 }

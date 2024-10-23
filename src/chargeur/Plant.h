@@ -30,4 +30,11 @@ public:
     bool shoot();
 
     void Update();
+
+    Behaviour* getBehaviour() const { return mBehaviour; }
+
+private :
+    void setupBehaviour();
+    void setBehaviour(Behaviour* behaviour);
+
 };

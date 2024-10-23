@@ -14,7 +14,6 @@ Playground::Playground () { addPlant(); }
 
 void Playground::addZombie(sf::Vector2f pos)
 {
-
     mZombies.push_back(new Zombie(pos, 10));
 }
 
@@ -31,7 +30,7 @@ void Playground::addPlant()
     mPlants.push_back(new Plant(sf::Vector2f(10, 350), 10));
 }
 
-void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies)
+void Playground::checkCollision(std::vector<Plant*>& mPlants, std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies)
 {
     for (auto& projectile : mProjectiles)
     {
@@ -53,6 +52,27 @@ void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vec
         }
     }
 }
+
+bool Playground::isZombieInSameRow(Plant* plant, Zombie* zombie)
+{
+    return plant->getPosition().y == zombie->getPosition().y;
+}
+
+bool Playground::isZombieInRange(Plant* plant, Zombie* zombie, float range)
+{
+    if (isZombieInSameRow(plant, zombie))
+    {
+        float distance = std::abs(plant->getPosition().x - zombie->getPosition().x);
+        return distance <= range;
+    }
+    return false;
+}
+
+const std::vector<Zombie*>& Playground::getZombies()
+{
+    return mZombies;
+}
+
 
 int Playground::getNearestRow(sf::Vector2i mouse_pos)
 {
@@ -117,6 +137,13 @@ void Playground::update()
     {
         projectile->Update();
     }
+
+    for (auto& plant : mPlants)
+    {
+        plant->getBehaviour()->Update(plant);  
+    }
+
+    checkCollision(mPlants, mProjectiles, mZombies);
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)

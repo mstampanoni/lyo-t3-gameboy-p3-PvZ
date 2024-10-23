@@ -31,4 +31,5 @@ sf::Color Projectile::getColor() const
 
 void Projectile::Update()
 {
+	pos.x += 0.007f;
 }

@@ -17,13 +17,14 @@ private:
 	std::vector<int> rows = { 50,150,250,350 };
 
 	Playground();
-	void checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies);
+	void checkCollision(std::vector<Plant*>& mPlants, std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies);
 
 	void addZombie(sf::Vector2f pos);
-	void addProjectile(sf::Vector2f pos);
 	void addPlant();
 
 	int getNearestRow(sf::Vector2i mouse_pos);
+	bool isZombieInSameRow(Plant* plant, Zombie* zombie);
+
 public:
 
 	static Playground* instantiate();
@@ -32,4 +33,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void update();
 	void handleUserInput(sf::Event& event, sf::RenderWindow& window);
+	bool isZombieInRange(Plant* plant, Zombie* zombie, float range);
+	const std::vector<Zombie*>& getZombies();
+	void addProjectile(sf::Vector2f pos);
 };
