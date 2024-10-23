@@ -8,6 +8,7 @@ int main(void)
     sf::RenderWindow window(sf::VideoMode(650, 400), "PvZ Game");
 
     Playground* playground = Playground::instantiate();
+
     if (!playground)
     {
         return -1;

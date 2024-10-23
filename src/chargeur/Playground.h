@@ -9,6 +9,7 @@ class Zombie;
 class Playground
 {
 private:
+
 	std::vector<Plant*> mPlants;
 	std::vector<Zombie*> mZombies;
 	Playground();
