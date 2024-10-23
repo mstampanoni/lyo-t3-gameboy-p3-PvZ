@@ -11,7 +11,7 @@ class Plant : public Entity
 {
     std::string mName;
     int mAmmoCount = 5;
-    int mMaxAmmo;
+    int mMaxAmmo = 5;
     Context::State mState;
     Behaviour* mBehaviour;
 
@@ -32,6 +32,7 @@ public:
     void refillMagazine();
 
     void shoot();
+    void reload();
 
     void Update();
 
