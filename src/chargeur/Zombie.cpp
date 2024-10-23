@@ -6,8 +6,9 @@ Zombie::Zombie(sf::Vector2f pos, int radius) : Entity(pos, radius)
     shape.setFillColor(sf::Color::Red);  
 }
 
-void Zombie::move()
+void Zombie::Update()
 {
+	this->pos.x -= mSpeed;
 }
 
 void Zombie::Update()

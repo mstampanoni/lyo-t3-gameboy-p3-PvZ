@@ -14,6 +14,8 @@ private:
 	std::vector<Zombie*> mZombies;
 	std::vector<Projectile*> mProjectiles;
 
+	std::vector<int> rows = { 50,150,250,350 };
+
 	Playground();
 	void checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies);
 
@@ -21,6 +23,7 @@ private:
 	void addProjectile(sf::Vector2f pos);
 	void addPlant();
 
+	int getNearestRow(sf::Vector2i mouse_pos);
 public:
 
 	static Playground* instantiate();

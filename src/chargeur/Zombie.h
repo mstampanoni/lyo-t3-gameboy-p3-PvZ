@@ -6,7 +6,7 @@ class Zombie : public Entity
 public:
     Zombie(sf::Vector2f pos, int radius);
 
-    void move();  
-    void Update() override;  // Surcharger Update
+	void Update() override;
+	
+	float mSpeed = 0.005f;
 };
-

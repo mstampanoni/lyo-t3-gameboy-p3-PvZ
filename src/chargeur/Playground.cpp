@@ -53,6 +53,20 @@ void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vec
     }
 }
 
+int Playground::getNearestRow(sf::Vector2i mouse_pos)
+{
+	if (mouse_pos.y >= 0 && mouse_pos.y <= 100) {
+		return 50;
+	} else if (mouse_pos.y > 100 && mouse_pos.y <= 200) {
+		return 150;
+	} else if (mouse_pos.y > 200 && mouse_pos.y <= 300) {
+		return 250;
+	} else {
+		// else if (mouse_pos.y > 300 && mouse_pos.y <= 400) {
+		return 350;
+	}
+}
+
 Playground* Playground::instantiate()
 {
     if (!instance)
@@ -89,6 +103,14 @@ void Playground::draw(sf::RenderWindow& window)
     {
         plant->draw(window);
     }
+		//shape.setPosition(mZombies[i]->pos.x, mZombies[i]->pos.y);
+		//shape.setOrigin(radius, radius);
+		//shape.setFillColor(sf::Color(255, 0, 0));
+		//shape.setOutlineThickness(5);
+		//shape.setOutlineColor(sf::Color(134, 1, 17));
+
+		//window.draw(shape);
+	}
 }
 
 void Playground::update()
