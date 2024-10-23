@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Entity.h"
 
-class Plant : public Entity
+class Projectile : public Entity
 {
     std::string mName;
     int mAmmoCount, mMaxAmmo;
@@ -16,20 +16,16 @@ class Plant : public Entity
 
 public:
 
-    Plant();
-    Plant(
+    Projectile();
+    Projectile(
         Behaviour* plant_behaviour,
         int ammo_count);
-    ~Plant();
+    ~Projectile();
 
     void setState(Context::State);
     Context::State getState() const;
 
     sf::Color getColor() const;
-    int getAmmoCount() const;
-    void refillMagazine();
-
-    bool shoot();
 
     void Update();
 };

@@ -3,7 +3,7 @@
 
 Plant::Plant() {}
 
-Plant::Plant(sf::Vector2f position, Behaviour* plant_behaviour, int ammo_count) {}
+Plant::Plant(Behaviour* plant_behaviour, int ammo_count) {}
 
 Plant::~Plant() {}
 
@@ -17,11 +17,6 @@ Context::State Plant::getState() const
 sf::Color Plant::getColor() const
 {
 	return sf::Color();
-}
-
-sf::Vector2f Plant::getPosition() const
-{
-	return sf::Vector2f();
 }
 
 int Plant::getAmmoCount() const

@@ -11,6 +11,8 @@ class Playground
 private:
 	std::vector<Plant*> mPlants;
 	std::vector<Zombie*> mZombies;
+	std::vector<Projectile*> mProjectiles;
+
 	Playground();
 	void checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies);
 public:
