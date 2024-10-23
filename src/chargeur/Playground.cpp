@@ -123,6 +123,7 @@ void Playground::draw(sf::RenderWindow& window)
     for (auto& plant : mPlants)
     {
         plant->draw(window);
+        plant->drawAmmoCount(window);
     }
 }
 
