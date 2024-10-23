@@ -66,8 +66,13 @@ public:
         if (elapsed >= 4) {
             Plant->reload();
             startTime = std::chrono::high_resolution_clock::now();
+            End(Plant);
         }
     }
 
-    void End(Plant* Plant)  override {};
+    void End(Plant* Plant)  override 
+    {
+        Plant->setState(Context::State::Idle);
+    }
+    
 };

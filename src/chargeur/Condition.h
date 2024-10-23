@@ -43,3 +43,19 @@ public:
         return true;
     }
 };
+
+class ReloadingCondition : public Condition
+{
+private:
+    float mRange;
+
+public:
+    bool Test(Plant* plant) override
+    {
+        if (plant->getAmmoCount() == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+};

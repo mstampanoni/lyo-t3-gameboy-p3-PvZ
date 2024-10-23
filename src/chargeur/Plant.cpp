@@ -28,6 +28,15 @@ Plant::Plant(sf::Vector2f pos, int radius) : Entity(pos, radius), mState(Context
 
     mBehaviour->AddTransition(Context::State::Shooting, shooting_to_idle);
 
+    Action* reloading_action = new ReloadingAction();
+
+    Transition* idle_to_reload = new Transition();
+    idle_to_reload->addCondition(new ReloadingCondition());
+    idle_to_reload->setTargetState(Context::State::Reload);
+
+    mBehaviour->AddAction(Context::State::Reload, reloading_action);
+
+    mBehaviour->AddTransition(Context::State::Idle, idle_to_reload);
 }
 
 Plant::~Plant() {}
