@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    sf::RenderWindow window(sf::VideoMode(650, 400), "SuperShotgun Game");
+    sf::RenderWindow window(sf::VideoMode(650, 400), "PvZ Game");
 
     while (window.isOpen())
     {
