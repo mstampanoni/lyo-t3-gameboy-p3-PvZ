@@ -7,31 +7,46 @@ namespace {
 	static Playground* instance = nullptr;
 }
 
+
 Playground::Playground() {
 
 }
 
 void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombie)
 {
-    for (auto& projectile : mProjectiles)
-    {
-        for (auto& zombie : mZombies)
-        {
-            if (projectile->pos.x < zombie->pos.x + zombie->dim.x &&
-                projectile->pos.x + projectile->dim.x > zombie->pos.x &&
-                projectile->pos.y < zombie->pos.y + zombie->dim.y &&
-                projectile->pos.y + projectile->dim.y > zombie->pos.y)
-            {
-                delete projectile;
-                delete zombie;
+    //for (auto& projectile : mProjectiles)
+    //{
+    //    for (auto& zombie : mZombies)
+    //    {
+    //        if (projectile->pos.x < zombie->pos.x + zombie->radius &&
+    //            projectile->pos.x + projectile->radius > zombie->pos.x &&
+    //            projectile->pos.y < zombie->pos.y + zombie->radius &&
+    //            projectile->pos.y + projectile->radius > zombie->pos.y)
+    //        {
+    //            delete projectile;
+    //            delete zombie;
 
-                mProjectiles.erase(std::remove(mProjectiles.begin(), mProjectiles.end(), projectile), mProjectiles.end());
-                mZombies.erase(std::remove(mZombies.begin(), mZombies.end(), zombie), mZombies.end());
+    //            mProjectiles.erase(std::remove(mProjectiles.begin(), mProjectiles.end(), projectile), mProjectiles.end());
+    //            mZombies.erase(std::remove(mZombies.begin(), mZombies.end(), zombie), mZombies.end());
 
-                break;
-            }
-        }
-    }
+    //            break;
+    //        }
+    //    }
+    //}
+}
+
+int Playground::getNearestRow(sf::Vector2i mouse_pos)
+{
+	if (mouse_pos.y >= 0 && mouse_pos.y <= 100) {
+		return 50;
+	} else if (mouse_pos.y > 100 && mouse_pos.y <= 200) {
+		return 150;
+	} else if (mouse_pos.y > 200 && mouse_pos.y <= 300) {
+		return 250;
+	} else {
+		// else if (mouse_pos.y > 300 && mouse_pos.y <= 400) {
+		return 350;
+	}
 }
 
 Playground* Playground::instantiate()
@@ -60,9 +75,11 @@ void Playground::draw(sf::RenderWindow& window)
 		int radius = 20;
 		sf::CircleShape shape(radius);
 
-		shape.setPosition(mZombies[i]->x, mZombies[i]->y);
+		shape.setPosition(mZombies[i]->pos.x, mZombies[i]->pos.y);
 		shape.setOrigin(radius, radius);
 		shape.setFillColor(sf::Color(255, 0, 0));
+		shape.setOutlineThickness(5);
+		shape.setOutlineColor(sf::Color(134, 1, 17));
 
 		window.draw(shape);
 	}
@@ -70,6 +87,9 @@ void Playground::draw(sf::RenderWindow& window)
 
 void Playground::update()
 {
+	for (int i = 0; i < mZombies.size(); i++) {
+		mZombies[i]->Update();
+	}
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
@@ -77,6 +97,8 @@ void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 	if (event.type == sf::Event::MouseButtonPressed) {
 		sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
 
-		mZombies.push_back(new Zombie(mouse_pos.x, mouse_pos.y));
+		sf::Vector2f spawn_pos(650, getNearestRow(mouse_pos));
+
+		mZombies.push_back(new Zombie(spawn_pos, 50));
 	}
 }

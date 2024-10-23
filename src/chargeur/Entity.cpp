@@ -3,8 +3,8 @@
 
 Entity::Entity() {}
 
-Entity::Entity(sf::Vector2f pos, sf::Vector2f dim)
+Entity::Entity(sf::Vector2f pos, int radius)
 {
 	this->pos = pos;
-	this->dim = dim;
+	this->radius = radius;
 }

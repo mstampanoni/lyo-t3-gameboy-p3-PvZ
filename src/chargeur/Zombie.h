@@ -4,9 +4,9 @@
 class Zombie : public Entity{
 public:
 
-	Zombie(int x, int y);
+	Zombie(sf::Vector2f pos, int radius);
 
-	void move();
+	void Update() override;
 	
-	//float mSpeed;
+	float mSpeed = 0.005f;
 };
