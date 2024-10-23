@@ -6,9 +6,9 @@
     "windows_target_platform_version": "10.0",
     "configuration": [
         {
-            "additional_dependencies": "%(AdditionalDependencies)",
-            "additional_include_directories": "",
-            "additional_library_directories": "",
+            "additional_dependencies": "sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib%(AdditionalDependencies)",
+            "additional_include_directories": "..\\..\\..\\sfml\\include;%(AdditionalIncludeDirectories)",
+            "additional_library_directories": "..\\..\\..\\sfml\\lib;%(AdditionalLibraryDirectories)",
             "character_set": "Unicode",
             "conformance_mode": "true",
             "generate_debug_information": "true",
@@ -19,7 +19,7 @@
             "platform_toolset": "v143",
             "precompiled_header": "Use",
             "precompiled_header_file": "pch.h",
-            "preprocessor_definitions": "_DEBUG;_CONSOLE;%(PreprocessorDefinitions)",
+            "preprocessor_definitions": "SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)",
             "sdl_check": "true",
             "subsystem": "Console",
             "type": "Application",
