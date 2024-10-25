@@ -96,3 +96,17 @@ void Plant::drawAmmoCount(sf::RenderWindow& window)
 
     window.draw(text_manager->text);
 }
+
+void Plant::reduceHealth(int damage)
+{
+    health = health - damage;
+}
+
+bool Plant::isDead()
+{
+    if (health <= 0)
+    {
+        return true;
+    }
+    return false;
+}

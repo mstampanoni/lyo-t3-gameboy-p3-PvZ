@@ -32,14 +32,14 @@ void Playground::addPlant()
 
 void Playground::checkCollision(std::vector<Plant*>& mPlants, std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mZombies)
 {
-    for (auto& projectile : mProjectiles)
+    for (auto& zombie : mZombies)
     {
-        for (auto& zombie : mZombies)
+        for (auto& projectile : mProjectiles)
         {
-            if (projectile->getPosition().x < zombie->getPosition().x + zombie->getRadius() * 2 &&
-                projectile->getPosition().x + projectile->getRadius() * 2 > zombie->getPosition().x &&
-                projectile->getPosition().y < zombie->getPosition().y + zombie->getRadius() * 2 &&
-                projectile->getPosition().y + projectile->getRadius() * 2 > zombie->getPosition().y)
+            if (zombie->getPosition().x < projectile->getPosition().x + projectile->getRadius() * 2 &&
+                zombie->getPosition().x + zombie->getRadius() * 2 > projectile->getPosition().x &&
+                zombie->getPosition().y < projectile->getPosition().y + projectile->getRadius() * 2 &&
+                zombie->getPosition().y + zombie->getRadius() * 2 > projectile->getPosition().y)
             {
                 delete projectile;
                 delete zombie;
@@ -50,8 +50,31 @@ void Playground::checkCollision(std::vector<Plant*>& mPlants, std::vector<Projec
                 break;
             }
         }
+
+        for (auto& plant : mPlants)
+        {
+            if (zombie->getPosition().x < plant->getPosition().x + plant->getRadius() * 2 &&
+                zombie->getPosition().x + zombie->getRadius() * 2 > plant->getPosition().x &&
+                zombie->getPosition().y < plant->getPosition().y + plant->getRadius() * 2 &&
+                zombie->getPosition().y + zombie->getRadius() * 2 > plant->getPosition().y)
+            {
+                if (!zombie->isAttacking)
+                {
+                    zombie->startAttack();
+                    plant->reduceHealth(1);
+                }
+
+                if (plant->isDead())
+                {
+                    delete plant;
+                    mPlants.erase(std::remove(mPlants.begin(), mPlants.end(), plant), mPlants.end());
+                }
+            }
+        }
     }
 }
+
+
 
 bool Playground::isZombieInSameRow(Plant* plant, Zombie* zombie)
 {

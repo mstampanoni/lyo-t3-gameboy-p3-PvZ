@@ -12,6 +12,7 @@ class Plant : public Entity
     std::string mName;
     int mAmmoCount = 5;
     int mMaxAmmo = 5;
+    int health = 3;
     Context::State mState;
     Behaviour* mBehaviour;
 
@@ -38,6 +39,9 @@ public:
 
     Behaviour* getBehaviour() const { return mBehaviour; }
     void drawAmmoCount(sf::RenderWindow& window);
+    
+    void reduceHealth(int damage);
+    bool isDead();
 
 private :
     void setupBehaviour();
